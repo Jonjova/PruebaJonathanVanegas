@@ -34,6 +34,10 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/scripts/Materias/CrudMateria.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/scripts/Materias/ValidaMaterias.js"></script>
 
+<!--Tabla Grado-->
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/scripts/Grado/CrudGrado.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/scripts/Grado/ValidaGrado.js"></script>
+
 <!--Recursos Diseño y alertas -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sweetalert2.js"></script>

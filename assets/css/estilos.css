@@ -14,10 +14,11 @@ nav {
 }
 
 nav a:hover {
-    border-bottom-color: #101920;
+    border-bottom-color: #f6f9fc;
     transform: scale(1.1);
     z-index: 2;
     transition: 200ms;
+    text-decoration: none;
 }
 
 #logo {
@@ -67,7 +68,7 @@ nav ul li a {
     display: block;
     width: 40px;
     height: 6px;
-    background: black;
+    background: rgb(245, 240, 240);
     margin: 8px;
     transition: 300ms;
 }

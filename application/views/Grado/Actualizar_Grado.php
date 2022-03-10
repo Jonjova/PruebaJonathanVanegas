@@ -1,21 +1,21 @@
 <!-- Aqui comienza el modal de editar -->
-<div class="modal fade" id="editMateria" aria-hidden="true">
+<div class="modal fade" id="editGrado" aria-hidden="true">
     <div class="modal-dialog " role="document">
         <div class="modal-content" style="opacity: 0.90;background-color: #eee;">
             <div class="modal-header">
-                <h5 class="modal-title">Editar información de Materia</h5>
+                <h5 class="modal-title">Editar información de Grado</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="MateriaEditForm" enctype="multipart/form-data" class="needs-validation">
+            <form id="GradoEditForm" enctype="multipart/form-data" class="needs-validation">
                 <div class="modal-body">
                     <div class="row">
                       
                         <div class="col-sm">
-                            <label>Nombre</label>
-                            <input hidden name="mat_id" id="mat_id">
-                            <input type="text" placeholder="Ingrese Nombre" id="mat_nombre_" name="mat_nombre" class="form-control mb-2 mr-sm-2 " id-data="validationCustom02" required>
+                            <label>Grado</label>
+                            <input hidden name="grd_id" id="grd_id">
+                            <input type="text" placeholder="Ingrese Nombre" id="grd_nombre_" name="grd_nombre" class="form-control mb-2 mr-sm-2 " id-data="validationCustom02" required>
                         </div>
                     </div>
                    

@@ -20,16 +20,6 @@ function limpiarMateria() {
     $('#Materia').DataTable().ajax.reload(null, false);
 }
 
-//validación de campos con la libreria de jquery.mask
-$('#alm_edad').mask('999');
-
-//validación ingresar solo numeros
-$('#alm_edad').keyup(function(e) {
-    if (/\D/g.test(this.value)) {
-        // Filter non-digits from input value.
-        this.value = this.value.replace(/\D/g, '');
-    }
-});
 
 // LETRAS Y ESPACIOS
 jQuery.validator.addMethod("alfaOespacio", function(value, element) {
