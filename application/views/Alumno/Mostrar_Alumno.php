@@ -5,7 +5,6 @@
 	</button><br><br>
 	<!--Filtrar por Alumno-->
 	<select id="mat_id" onchange="filtrarMateria()">
-		
 	</select>
 	<br><br>
 	<!--Aquí se listan las Alumno.-->

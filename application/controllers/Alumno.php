@@ -13,7 +13,8 @@ class Alumno extends CI_Controller
 	public function index()
 	{
 		//Encabezado 
-		$this->load->view('layout/header');
+		$data = array('title' => 'Alumnos' );
+		$this->load->view('layout/header',$data);
 		$this->load->view('layout/nav');
 		//Body
 		$this->load->view('Alumno/Mostrar_Alumno');
@@ -44,7 +45,7 @@ class Alumno extends CI_Controller
 			foreach ($resultList as $key => $value) {
 				//boton de editar con el que obtenemos un id
 				$editar = '<a onclick="obtenIdAlumno('.$value['alm_id'].')" > <i class="fas fa-edit fa-lg"></i></a> ';
-				$eliminar = '<a onclick="eliminar('.$value['alm_id'].')"  > <i class="fas fa-user-times fa-lg"></i></a> ';
+				$eliminar = '<a onclick="eliminarAlumno('.$value['alm_id'].')"  > <i class="fas fa-user-times fa-lg"></i></a> ';
 
 				$result['data'][] = array(
 					$i++,
@@ -79,7 +80,7 @@ class Alumno extends CI_Controller
 	{
 		$datos = $this->am->obtMateriaRows();
 		echo "<option selected disabled value=''>Seleccione..</option>";
-		echo "<option value='TODOS'>TODOS</option>";
+		echo "<option value='TODOS' selected>TODOS</option>";
 		foreach ($datos as $s) {
 			echo "<option value='".$s['mat_id']."'>".$s['mat_nombre']."</option>";
 		}
@@ -101,9 +102,9 @@ class Alumno extends CI_Controller
 	public function Actualizar()
 	{
 		date_default_timezone_set("America/El_Salvador"); // ZONA HORARIA
-		$whereAlumno = $this->input->post('ID_PROYECTO_UPDATE');
+		$whereAlumno = $this->input->post('alm_id');
 		
-		 $actualizarProyecto = $this->pm->actualizarProyecto('alm_alumno', $_POST, array('alm_id' => $whereAlumno));
+		 $actualizarProyecto = $this->am->actualizarAlumno('alm_alumno', $_POST, array('alm_id' => $whereAlumno));
 		
 		if ($actualizarProyecto == TRUE)
 		{
@@ -113,6 +114,21 @@ class Alumno extends CI_Controller
         {
             echo json_encode('Error al actualizar!');
 		}
-      
+
 	}
+
+	//Obtener el id un Alumno 
+	public function obtenerIdAlumno($idAlumno)
+	{
+		$resultData = $this->am->obtenAlumnoId(array('alm_id'=>$idAlumno ));
+		//Codificamos a json par aobtener la respuesta. 
+		echo json_encode($resultData);
+	}
+
+	//Metodo Eliminar 
+	public function Eliminar($id)
+	{
+		return $this->am->EliminarAlumno($id);
+	}
+
 }

@@ -1,13 +1,12 @@
 /****************************************************************************
-                        Mostrar Alumnos
+                        Mostrar Materia
 ****************************************************************************/
 //Versión datatable y ajax.
 $(document).ready(function() {
-    Materias();
-    GradoAlumno();
+
     //Mostrar elementos de la tabla Alumno.
-    $('#Alumno').DataTable({
-        "ajax": url + "Alumno/MostrarAlumno",
+    $('#Materia').DataTable({
+        "ajax": url + "Materia/MostrarMateria",
         responsive: true,
         "order": [],
         "language": idioma_espanol
@@ -18,75 +17,10 @@ $(document).ready(function() {
 
 
 /****************************************************************************
-                        Filtrar por Materia
-****************************************************************************/
-/*function filtrarMateria() {
-    $('#Alumno').DataTable().draw();
-
-}
-
-$(document).ready(function() {
-    $.fn.dataTable.ext.search.push(
-        function(settings, data, dataIndex) { //'data' contiene los datos de la fila
-            //En la columna 1 estamos mostrando la materia
-            let materiaColumnaDatos = data[1] || 0;
-            if (!filtrarPorMateria(materiaColumnaDatos)) {
-                return false;
-            }
-            return true;
-        }
-    );
-});
-
-function filtrarPorMateria(materiaColumnaDatos) {
-    let materiaSeleccionada = $('#mat_id').val();
-    //Si la opción seleccionada es 'TODOS', devolvemos 'true' para que pinte la fila
-    if (materiaSeleccionada === "TODOS") {
-        return true;
-    }
-    //La fila sólo se va a pintar si el valor de la columna coincide con el del filtro seleccionado
-    return materiaColumnaDatos === materiaSeleccionada;
-}
-
-*/
-/****************************************************************************
-                        llenar select de Grado del Alumno
-****************************************************************************/
-function GradoAlumno() {
-    $.ajax({
-        url: url + "Alumno/obtGrado",
-        type: 'post',
-        success: function(respuesta) {
-            //Insertar
-            $('#alm_id_grd').html(respuesta);
-            //Actualizar
-            $('#alm_id_grd_').html(respuesta);
-        }
-    })
-}
-
-/****************************************************************************
-                        llenar select de Materia
-****************************************************************************/
-
-function Materias() {
-    $.ajax({
-        url: url + "Alumno/obtMaterias",
-        type: 'post',
-        success: function(respuesta) {
-            //Insertar
-            $('#mat_id').html(respuesta);
-            //Actualizar
-            $('#mat_id_').html(respuesta);
-        }
-    })
-}
-
-/****************************************************************************
-                        Acción de Insertar Alumnos.
+                        Acción de Insertar Materia.
 ****************************************************************************/
 $(function() {
-    $("#AlumnoCreateForm").submit(function(event) {
+    $("#MateriaCreateForm").submit(function(event) {
 
         if (!$(this).valid()) {
             Swal.fire({
@@ -99,16 +33,14 @@ $(function() {
             });
         } else {
             $.ajax({
-                url: url + '/Alumno/Guardar',
-                data: $("#AlumnoCreateForm").serialize(),
+                url: url + 'Materia/Guardar',
+                data: $("#MateriaCreateForm").serialize(),
                 type: "post",
                 async: true,
                 dataType: 'json',
                 success: function(response) {
 
                     if (response !== '') {
-
-                        //alert('Datos guardados correctamente');
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
@@ -116,7 +48,7 @@ $(function() {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        limpiarAlumno();
+                        limpiarMateria();
 
                     }
                 }
@@ -131,16 +63,16 @@ $(function() {
                         Acción de Actualizar Alumnos.
 ****************************************************************************/
 
-$("#AlumnoEditForm").submit(function(event) {
+$("#MateriaEditForm").submit(function(event) {
     event.preventDefault();
     $.ajax({
-        url: url + 'Alumno/Actualizar',
-        data: $("#AlumnoEditForm").serialize(),
+        url: url + 'Materia/Actualizar',
+        data: $("#MateriaEditForm").serialize(),
         type: "post",
         async: false,
         dataType: 'json',
         success: function(response) {
-            $('#Alumno').DataTable().ajax.reload(null, false);
+            $('#Materia').DataTable().ajax.reload(null, false);
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
@@ -148,8 +80,7 @@ $("#AlumnoEditForm").submit(function(event) {
                 showConfirmButton: false,
                 timer: 1500
             });
-            $('#editAlumno').modal('hide');
-            $("mat_id select").val("TODOS").change();
+            $('#editMateria').modal('hide');
         },
         error: function() {
             alert("error");
@@ -159,24 +90,19 @@ $("#AlumnoEditForm").submit(function(event) {
 
 
 /****************************************************************************
-                       Obtener un id de Alumno.
+                       Obtener un id de Materias.
 ****************************************************************************/
 
-function obtenIdAlumno(idAlumno, data) {
+function obtenIdMateria(idMateria, data) {
     $.ajax({
-        url: url + 'Alumno/obtenerIdAlumno/' + idAlumno,
+        url: url + 'Materia/obtenerIdMateria/' + idMateria,
         method: "post",
-        data: JSON.stringify({ idAlumno: idAlumno }),
+        data: JSON.stringify({ idMateria: idMateria }),
         dataType: "json",
         success: function(response) {
-            $('#alm_id').val(response.alm_id);
-            $('#alm_codigo_').val(response.alm_codigo);
-            $('#alm_nombre_').val(response.alm_nombre);
-            $('#alm_edad_').val(response.alm_edad);
-            $('#alm_sexo_').val(response.alm_sexo);
-            $('#alm_id_grd_').val(response.alm_id_grd);
-            $('#alm_observacion_').val(response.alm_observacion);
-            $('#editAlumno').modal({
+            $('#mat_id').val(response.mat_id);
+            $('#mat_nombre_').val(response.mat_nombre);
+            $('#editMateria').modal({
                 backdrop: "static",
                 keyboard: false
             });
@@ -186,9 +112,9 @@ function obtenIdAlumno(idAlumno, data) {
 
 
 /****************************************************************************
-                        Acción de Eliminar Alumnos.
+                        Acción de Eliminar Materias.
 ****************************************************************************/
-function eliminarAlumno(idAlumno) {
+function eliminarMateria(idMateria) {
 
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
@@ -209,11 +135,11 @@ function eliminarAlumno(idAlumno) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: url + '/Alumno/Eliminar/' + idAlumno,
+                url: url + 'Materia/Eliminar/' + idMateria,
                 type: "POST",
-                data: { idAlumno: idAlumno },
+                data: { idMateria: idMateria },
                 success: function(respuesta) {
-                    $('#Alumno').DataTable().ajax.reload(null, false);
+                    $('#Materia').DataTable().ajax.reload(null, false);
 
                     swalWithBootstrapButtons.fire(
                         'Eliminado!',

@@ -123,3 +123,13 @@ nav .mobnav-wrapper li {
 .nav-toggle .bar:last-child {
     transform: rotate(50deg) translateY(-2px);
 }
+
+.copy {
+    color: black;
+    text-align: center;
+}
+
+.copy p {
+    margin: 1.5em 0;
+    font-size: 14.5px;
+}
