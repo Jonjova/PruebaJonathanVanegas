@@ -45,7 +45,7 @@ class Materia extends CI_Controller
 			foreach ($resultList as $key => $value) {
 				//boton de editar con el que obtenemos un id
 				$editar = '<a onclick="obtenIdMateria('.$value['mat_id'].')" > <i class="fas fa-edit fa-lg"></i></a> ';
-				$eliminar = '<a onclick="eliminarMateria('.$value['mat_id'].')"  > <i class="fas fa-user-times fa-lg"></i></a> ';
+				$eliminar = '<a onclick="eliminarMateria('.$value['mat_id'].')"  > <i class="fas fa fa-solid fa-eraser fa-lg"></i></a> ';
 
 				$result['data'][] = array(
 					$i++,

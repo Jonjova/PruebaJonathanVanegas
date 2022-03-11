@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<h2>Registro de Grado</h2><br>
 	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#GradoModal">
-		<i class="fa fas fa-solid fa-user-plus"></i>
+	<i class="fa fas fa-solid fa-plus"></i>
 	</button><br><br>
 	<!--Aquí se listan las Alumno.-->
 	<div class="table-responsive-sm">
