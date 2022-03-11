@@ -50,8 +50,8 @@ class Alumno_m extends CI_Model
 		return $datos->result_array();
 	}
 
-	//llenado Select Materias
-	public function obtMateriaRows()
+	//llenado Select Alumno
+	public function obtAlumnoRows()
 	{
 		$datos = $this->db->get('alm_alumno');
 		return $datos->result_array();

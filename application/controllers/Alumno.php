@@ -76,9 +76,9 @@ class Alumno extends CI_Controller
 	}
 
 	//LLenar select con ajax 
-	public function obtMaterias()
+	public function obtAlumno()
 	{
-		$datos = $this->am->obtMateriaRows();
+		$datos = $this->am->obtAlumnoRows();
 		echo "<option selected disabled value=''>Seleccione..</option>";
 		echo "<option value='TODOS' selected>TODOS</option>";
 		foreach ($datos as $s) {

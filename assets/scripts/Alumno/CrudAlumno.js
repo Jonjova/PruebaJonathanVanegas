@@ -3,7 +3,7 @@
 ****************************************************************************/
 //Versión datatable y ajax.
 $(document).ready(function() {
-    Materias();
+    FiltroAlumno();
     GradoAlumno();
     var alumno = $("[name='alm_id']").val();
     llenarTablaAlumno(alumno);
@@ -45,19 +45,19 @@ function GradoAlumno() {
 }
 
 /****************************************************************************
-                        llenar select de Materia
+                        llenar select de Alumno
 ****************************************************************************/
 
-function Materias() {
+function FiltroAlumno() {
     $.ajax({
-        url: url + "Alumno/obtMaterias",
+        url: url + "Alumno/obtAlumno",
         type: 'post',
         success: function(respuesta) {
             //Insertar
             $('#alm_id').html(respuesta);
             $('#alm_id_').html(respuesta);
             //Actualizar
-            $('#mat_id_').html(respuesta);
+            $('#alm_id_a').html(respuesta);
         }
     })
 }
