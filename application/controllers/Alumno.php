@@ -103,7 +103,7 @@ class Alumno extends CI_Controller
 	{
 		date_default_timezone_set("America/El_Salvador"); // ZONA HORARIA
 		$whereAlumno = $this->input->post('alm_id');
-		
+		//echo json_encode($whereAlumno);
 		 $actualizarProyecto = $this->am->actualizarAlumno('alm_alumno', $_POST, array('alm_id' => $whereAlumno));
 		
 		if ($actualizarProyecto == TRUE)

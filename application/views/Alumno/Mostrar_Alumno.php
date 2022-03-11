@@ -4,7 +4,7 @@
 		<i class="fa fas fa-solid fa-user-plus"></i>
 	</button><br><br>
 	<!--Filtrar por Alumno-->
-	<select id="alm_id" name="alm_id"  >
+	<select id="alm_id_" name="alm_id"  >
 	</select>
 	<br><br>
 	<!--Aquí se listan las Alumno.-->

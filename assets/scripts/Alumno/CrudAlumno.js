@@ -6,19 +6,7 @@ $(document).ready(function() {
     Materias();
     GradoAlumno();
     var alumno = $("[name='alm_id']").val();
-    //var alumno = $('#alm_id').val();
-    //var alumno = $("#alm_id option:selected").text();
-    var op = llenarTablaAlumno(alumno);
-    console.log(op);
-    /*$('#alm_id').change(function(e) {
-        e.preventDefault();
-        alert(alumno);
-    });*/
-});
-
-$('#alm_id').change(function() {
-    $('#Alumno').dataTable().fnDestroy();
-    llenarTablaAlumno($(this).val());
+    llenarTablaAlumno(alumno);
 });
 
 function llenarTablaAlumno(alumno) {
@@ -33,38 +21,13 @@ function llenarTablaAlumno(alumno) {
 }
 
 /****************************************************************************
-                        Filtrar por Materia
+                        Filtrar por Alumno
 ****************************************************************************/
-
-/*function filtrarMateria() {
-    $('#Alumno').DataTable().draw();
-
-}
-
-$(document).ready(function() {
-    $.fn.dataTable.ext.search.push(
-        function(settings, data, dataIndex) { //'data' contiene los datos de la fila
-            //En la columna 1 estamos mostrando la materia
-            let materiaColumnaDatos = data[1] || 0;
-            if (!filtrarPorMateria(materiaColumnaDatos)) {
-                return false;
-            }
-            return true;
-        }
-    );
+$('#alm_id_').change(function() {
+    $('#Alumno').dataTable().fnDestroy();
+    llenarTablaAlumno($(this).val());
 });
 
-function filtrarPorMateria(materiaColumnaDatos) {
-    let materiaSeleccionada = $('#mat_id').val();
-    //Si la opción seleccionada es 'TODOS', devolvemos 'true' para que pinte la fila
-    if (materiaSeleccionada === "TODOS") {
-        return true;
-    }
-    //La fila sólo se va a pintar si el valor de la columna coincide con el del filtro seleccionado
-    return materiaColumnaDatos === materiaSeleccionada;
-}
-
-*/
 /****************************************************************************
                         llenar select de Grado del Alumno
 ****************************************************************************/
@@ -92,6 +55,7 @@ function Materias() {
         success: function(respuesta) {
             //Insertar
             $('#alm_id').html(respuesta);
+            $('#alm_id_').html(respuesta);
             //Actualizar
             $('#mat_id_').html(respuesta);
         }
