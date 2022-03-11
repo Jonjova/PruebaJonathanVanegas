@@ -32,10 +32,10 @@ class Alumno extends CI_Controller
 	}
 
 	//Mostrar con ajax y datatable
-	public function MostrarAlumno()
+	public function MostrarAlumno($alumnos)
 	{
 
-		$resultList = $this->am->mostrarAlumnos();
+		$resultList = $this->am->mostrarAlumnos($alumnos);
 
 		$result = array();
 		$editar = '';
@@ -82,7 +82,7 @@ class Alumno extends CI_Controller
 		echo "<option selected disabled value=''>Seleccione..</option>";
 		echo "<option value='TODOS' selected>TODOS</option>";
 		foreach ($datos as $s) {
-			echo "<option value='".$s['mat_id']."'>".$s['mat_nombre']."</option>";
+			echo "<option value='".$s['alm_id']."'>".$s['alm_nombre']."</option>";
 		}
 	}
 

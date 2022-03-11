@@ -5,21 +5,37 @@
 $(document).ready(function() {
     Materias();
     GradoAlumno();
+    var alumno = $("[name='alm_id']").val();
+    //var alumno = $('#alm_id').val();
+    //var alumno = $("#alm_id option:selected").text();
+    var op = llenarTablaAlumno(alumno);
+    console.log(op);
+    /*$('#alm_id').change(function(e) {
+        e.preventDefault();
+        alert(alumno);
+    });*/
+});
+
+$('#alm_id').change(function() {
+    $('#Alumno').dataTable().fnDestroy();
+    llenarTablaAlumno($(this).val());
+});
+
+function llenarTablaAlumno(alumno) {
     //Mostrar elementos de la tabla Alumno.
     $('#Alumno').DataTable({
-        "ajax": url + "Alumno/MostrarAlumno",
+        "ajax": url + "Alumno/MostrarAlumno/" + alumno,
         responsive: true,
         "order": [],
         "language": idioma_espanol
     });
 
-
-});
-
+}
 
 /****************************************************************************
                         Filtrar por Materia
 ****************************************************************************/
+
 /*function filtrarMateria() {
     $('#Alumno').DataTable().draw();
 
@@ -75,7 +91,7 @@ function Materias() {
         type: 'post',
         success: function(respuesta) {
             //Insertar
-            $('#mat_id').html(respuesta);
+            $('#alm_id').html(respuesta);
             //Actualizar
             $('#mat_id_').html(respuesta);
         }

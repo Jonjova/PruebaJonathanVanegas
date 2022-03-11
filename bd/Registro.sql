@@ -1,5 +1,5 @@
 -- drop database Registro
-create database Registro;
+-- create database Registro;
 use Registro;
 
 create table mat_materia(

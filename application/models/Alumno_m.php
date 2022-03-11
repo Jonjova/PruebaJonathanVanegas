@@ -4,11 +4,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Alumno_m extends CI_Model
 {
 	// result_array devuelve datos de tipo de matriz asociativa. 
-	public function mostrarAlumnos()
+	public function mostrarAlumnos($idAlumno)
 	{
-		$this->db->select('*');
-		$this->db->from('alm_alumno');
-		$datos = $this->db->get();
+		if ($idAlumno != 0)
+		{
+			$this->db->where('alm_id', $idAlumno);
+			$this->db->from('alm_alumno');
+			$datos = $this->db->get();
+		}
+		else
+		{
+			$datos = $this->db->get('alm_alumno');
+		}
 		return $datos->result_array();
 	}
 
@@ -46,7 +53,7 @@ class Alumno_m extends CI_Model
 	//llenado Select Materias
 	public function obtMateriaRows()
 	{
-		$datos = $this->db->get('mat_materia');
+		$datos = $this->db->get('alm_alumno');
 		return $datos->result_array();
 	}
 
@@ -73,5 +80,4 @@ class Alumno_m extends CI_Model
 		}
 	}
 
-	
 }
