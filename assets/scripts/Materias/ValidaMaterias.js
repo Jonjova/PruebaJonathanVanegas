@@ -1,6 +1,6 @@
 //validación de campos con la librería de jquery.validate
 $(function() {
-    $("#AlumnoCreateForm").validate({
+    $("#MateriaCreateForm").validate({
         rules: {
             mat_nombre: { required: true, minlength: 8, maxlength: 250, alfaOespacio: true }
         },
