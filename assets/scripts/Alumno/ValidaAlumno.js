@@ -32,7 +32,30 @@ jQuery.validator.setDefaults({
 
 //validación de campos con la librería de jquery.validate
 $(function() {
+
+
+    //Valida al insertar alumno
     $("#AlumnoCreateForm").validate({
+        rules: {
+            alm_codigo: { required: true, minlength: 6, maxlength: 100 },
+            alm_nombre: { required: true, minlength: 8, maxlength: 250, alfaOespacio: true },
+            alm_edad: { required: true },
+            alm_sexo: { required: true },
+            alm_id_grd: { required: true },
+            alm_observacion: { required: true }
+        },
+        messages: {
+            alm_codigo: { required: 'El campo de código es requerido', minlength: 'El mínimo permitido son 6 caracteres', maxlength: 'El máximo permitido son 100 caracteres' },
+            alm_nombre: { required: 'El campo de nombre es requerido', alfaOespacio: 'S\u00f3lo letras o espacios.', minlength: 'El mínimo permitido son 8 caracteres', maxlength: 'El máximo permitido son 250 caracteres' },
+            alm_edad: { required: 'El campo de edad es requerido' },
+            alm_sexo: { required: 'El campo de sexo es requerido' },
+            alm_id_grd: { required: 'El campo de grado es requerido' },
+            alm_observacion: { required: 'El campo de observación es requerido' }
+        }
+    });
+
+    //Valida al Actualizar Alumnos
+    $("#AlumnoEditForm").validate({
         rules: {
             alm_codigo: { required: true, minlength: 6, maxlength: 100 },
             alm_nombre: { required: true, minlength: 8, maxlength: 250, alfaOespacio: true },
@@ -52,16 +75,34 @@ $(function() {
     });
 });
 //limpia imput y select resetea la validación y remueve la clase del modal 
+//Limpia al insertar
 function limpiarAlumno() {
     $('#AlumnoModal').modal('hide');
     $('#AlumnoCreateForm').trigger("reset");
-    var valida = $("#AlumnoCreateForm").validate();
-    valida.resetForm();
+    var validaCreateAlumno = $("#AlumnoCreateForm").validate();
+    validaCreateAlumno.resetForm();
+    $('.form-control').removeClass('is-valid is-invalid');
+    $('.custom-select').removeClass('is-valid is-invalid');
+    $('#Alumno').DataTable().ajax.reload(null, false);
+}
+//Limpia al actualizarGrado
+function limpiarAlumnoUpdate() {
+    $('#editAlumno').modal('hide');
+    var validaAlumnoUpdate = $("#AlumnoEditForm").validate();
+    validaAlumnoUpdate.resetForm();
     $('.form-control').removeClass('is-valid is-invalid');
     $('.custom-select').removeClass('is-valid is-invalid');
     $('#Alumno').DataTable().ajax.reload(null, false);
 }
 
+// Recarga la funcion limpar alumos al actualizar
+function cargarUpdateAlumnos() {
+    var contar = 0;
+    for (var i = 0; i < 2; i++) {
+        contar = (contar + setTimeout(limpiarAlumnoUpdate, 1000));
+    }
+    console.log()
+}
 //validación de campos con la libreria de jquery.mask
 $('#alm_edad').mask('999');
 

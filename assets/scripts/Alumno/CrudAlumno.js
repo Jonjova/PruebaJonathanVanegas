@@ -113,28 +113,37 @@ $(function() {
 
 $("#AlumnoEditForm").submit(function(event) {
     event.preventDefault();
-    $.ajax({
-        url: url + 'Alumno/Actualizar',
-        data: $("#AlumnoEditForm").serialize(),
-        type: "post",
-        async: false,
-        dataType: 'json',
-        success: function(response) {
-            $('#Alumno').DataTable().ajax.reload(null, false);
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Actualizado correctamente',
-                showConfirmButton: false,
-                timer: 1500
-            });
-            $('#editAlumno').modal('hide');
-            $("mat_id select").val("TODOS").change();
-        },
-        error: function() {
-            alert("error");
-        }
-    });
+    if (!$(this).valid()) {
+        Swal.fire({
+            icon: 'error',
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            confirmButtonColor: "#343a40",
+            text: 'Campos vac\u00edos o inv\u00e1lidos!',
+            title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">Error de inserci\u00f3n</p>'
+        });
+
+    } else {
+        $.ajax({
+            url: url + 'Alumno/Actualizar',
+            data: $("#AlumnoEditForm").serialize(),
+            type: "post",
+            async: false,
+            dataType: 'json',
+            success: function(response) {
+
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Actualizado correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+                cargarUpdateAlumnos();
+            },
+        });
+    }
 });
 
 

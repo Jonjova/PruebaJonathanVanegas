@@ -21,7 +21,7 @@
                    
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary pull-left btn-sm" data-dismiss="modal">cerrar</button>
+                    <button type="button" class="btn btn-secondary pull-left btn-sm" data-dismiss="modal" onclick="limpiarGradoUpdate()">cerrar</button>
                     <button type="submit" class="btn btn-primary btn-sm">Actualizar</button>
                 </div>
             </form>

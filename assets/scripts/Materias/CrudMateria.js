@@ -60,32 +60,41 @@ $(function() {
 });
 
 /****************************************************************************
-                        Acción de Actualizar Alumnos.
+                        Acción de Actualizar Materia.
 ****************************************************************************/
 
 $("#MateriaEditForm").submit(function(event) {
     event.preventDefault();
-    $.ajax({
-        url: url + 'Materia/Actualizar',
-        data: $("#MateriaEditForm").serialize(),
-        type: "post",
-        async: false,
-        dataType: 'json',
-        success: function(response) {
-            $('#Materia').DataTable().ajax.reload(null, false);
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Actualizado correctamente',
-                showConfirmButton: false,
-                timer: 1500
-            });
-            $('#editMateria').modal('hide');
-        },
-        error: function() {
-            alert("error");
-        }
-    });
+    if (!$(this).valid()) {
+        Swal.fire({
+            icon: 'error',
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            confirmButtonColor: "#343a40",
+            text: 'Campos vac\u00edos o inv\u00e1lidos!',
+            title: '<p style="color: #343a40; font-size: 1.072em; font-weight: 600; line-height: unset; margin: 0;">Error de inserci\u00f3n</p>'
+        });
+
+    } else {
+        $.ajax({
+            url: url + 'Materia/Actualizar',
+            data: $("#MateriaEditForm").serialize(),
+            type: "post",
+            async: false,
+            dataType: 'json',
+            success: function(response) {
+
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Actualizado correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                cargarUpdateMateria();
+            },
+        });
+    }
 });
 
 
@@ -145,7 +154,7 @@ function eliminarMateria(idMateria) {
                         'Eliminado!',
                         'El registro ha sido eliminado.',
                         'success'
-                    )
+                    );
                 }
             });
 
