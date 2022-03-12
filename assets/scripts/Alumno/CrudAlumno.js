@@ -63,11 +63,6 @@ function FiltroAlumno() {
                 options += '<option value="' + object.alm_id + '">' + object.alm_nombre + '</option>';
             });
             $('#alm_id_').html(options);
-            //Insertar
-            /* $('#alm_id').html(respuesta);
-             $('#alm_id_').html(respuesta);
-             //Actualizar
-             $('#alm_id_a').html(respuesta);*/
         }
     })
 }
