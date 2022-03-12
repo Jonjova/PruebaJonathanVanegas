@@ -88,7 +88,6 @@ function limpiarAlumno() {
 }
 //Limpia al actualizarGrado
 function limpiarAlumnoUpdate() {
-    FiltroAlumno();
     $('#editAlumno').modal('hide');
     var validaAlumnoUpdate = $("#AlumnoEditForm").validate();
     validaAlumnoUpdate.resetForm();
