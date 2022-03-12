@@ -49,15 +49,25 @@ function GradoAlumno() {
 ****************************************************************************/
 
 function FiltroAlumno() {
+    $('#alm_id_').html('');
     $.ajax({
         url: url + "Alumno/obtAlumno",
         type: 'post',
-        success: function(respuesta) {
+        dataType: 'json',
+        success: function(res) {
+            //console.log(res);
+            var options = "<option selected disabled value=''>Seleccionar... </option>";
+            options = "<option selected value='TODOS'>Todos</option>";
+            $.each(res, function(index, object) {
+                // console.log(value.alm_codigo)
+                options += '<option value="' + object.alm_id + '">' + object.alm_nombre + '</option>';
+            });
+            $('#alm_id_').html(options);
             //Insertar
-            $('#alm_id').html(respuesta);
-            $('#alm_id_').html(respuesta);
-            //Actualizar
-            $('#alm_id_a').html(respuesta);
+            /* $('#alm_id').html(respuesta);
+             $('#alm_id_').html(respuesta);
+             //Actualizar
+             $('#alm_id_a').html(respuesta);*/
         }
     })
 }
@@ -208,7 +218,8 @@ function eliminarAlumno(idAlumno) {
                         'Eliminado!',
                         'El registro ha sido eliminado.',
                         'success'
-                    )
+                    );
+                    FiltroAlumno();
                 }
             });
 

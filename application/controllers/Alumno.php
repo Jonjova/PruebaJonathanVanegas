@@ -79,11 +79,12 @@ class Alumno extends CI_Controller
 	public function obtAlumno()
 	{
 		$datos = $this->am->obtAlumnoRows();
-		echo "<option selected disabled value=''>Seleccione..</option>";
+		echo json_encode($datos);
+		/*echo "<option selected disabled value=''>Seleccione..</option>";
 		echo "<option value='TODOS' selected>TODOS</option>";
 		foreach ($datos as $s) {
 			echo "<option value='".$s['alm_id']."'>".$s['alm_nombre']."</option>";
-		}
+		}*/
 	}
 
 	// Guardar Alumnos

@@ -83,10 +83,12 @@ function limpiarAlumno() {
     validaCreateAlumno.resetForm();
     $('.form-control').removeClass('is-valid is-invalid');
     $('.custom-select').removeClass('is-valid is-invalid');
+    FiltroAlumno();
     $('#Alumno').DataTable().ajax.reload(null, false);
 }
 //Limpia al actualizarGrado
 function limpiarAlumnoUpdate() {
+    FiltroAlumno();
     $('#editAlumno').modal('hide');
     var validaAlumnoUpdate = $("#AlumnoEditForm").validate();
     validaAlumnoUpdate.resetForm();
